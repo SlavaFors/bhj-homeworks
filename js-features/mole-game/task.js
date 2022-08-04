@@ -1,5 +1,5 @@
-let killedHole = document.getElementById("dead"); //countHole
-let miss = document.getElementById("lost"); //countnoHole
+let killedHole = document.getElementById("dead"); 
+let miss = document.getElementById("lost"); 
 getHole = (index) => {
   return document.getElementById(`hole${index}`);
 };
