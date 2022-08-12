@@ -16,16 +16,29 @@ class Game {
     this.lossElement.textContent = 0;
   }
 
-  registerEvents() {
-    /*
-      TODO:
-      Написать обработчик события, который откликается
-      на каждый введённый символ.
-      В случае правильного ввода слова вызываем this.success()
-      При неправильном вводе символа - this.fail();
-     */
-  }
+/*Получить DOM-элемент текущего символа, который необходимо ввести (свойство this.currentSymbol)
+Получить символ, который был введён с клавиатуры.
+Если два символа одинаковые, вызывать метод this.success
+Если два символа отличаются, вызвать метод this.fail
+При сравнении регистр не должен быть важен (а или А)
+Обратите внимание на то, что именно записывается в this.currentSymbol. Вспомните в чем различия между keydown и keyup*/
 
+registerEvents() {
+
+    document.addEventListener ('keydown', e => {
+
+      const value = e.key;  
+      const answer = this.currentSymbol.textContent;
+
+      if (value == answer) {
+         this.success();
+      } else {
+        this.fail();
+      }
+    });
+}
+
+  
   success() {
     this.currentSymbol.classList.add('symbol_correct');
     this.currentSymbol = this.currentSymbol.nextElementSibling;
