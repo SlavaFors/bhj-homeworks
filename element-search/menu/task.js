@@ -3,21 +3,29 @@
 2) Найдите меню рядом со ссылкой. Если оно есть, переключите у него класс menu_active
 3) Запрещайте переход по ссылке для тех, что имеют вложенное меню. Остальные пункты меню должны 
 без помех переводить пользователя на соответствующие страницы.
+*/
 
-В решении необходимо использовать методы, изученные на занятии, работы с ручной подстановкой 
-индексов массива приниматься не будут. Необходимые методы указаны в "Подсказках"*/
+let menuSub = Array.from(document.querySelectorAll("ul.menu.menu_sub")); //меню
+let menuLink = Array.from(document.querySelectorAll(".menu__link")); //подменю
 
-/*Подсказки (спойлеры)
-Используемые темы
-Событие click, метод onclick, обработчик события
-Предотвращение действия по умолчанию (return false в обработчике события)
-Метод closest
-Методы querySelector и querySelectorAll
-Метод Array.from() или оператор распространения (spread, «...») для удобной навигации по найденным элементам
-
-Советы
-С помощью методов closest, querySelector и querySelectorAll вы можете найти все подходящие элементы
-closest позволит найти ближайшего родителя по CSS-селектору
-querySelector позволит найти первый дочерний элемент по CSS-селектору
-querySelectorAll позволит найти все дочерние элемент по CSS-селектору
-Для вложенных меню вы обязаны возвращать false в обработчиках события для предотвращения перехода по ссылке.*/
+for (let i = 0; i < menuLink.length; i++) {
+  menuLink[i].onclick = function () {
+    const subMenu = menuLink[i]
+      .closest(".menu__item")
+      .querySelector(".menu_sub");
+    const result = menuSub.find((elems) =>
+      elems.classList.contains("menu_active")
+    );
+    if (subMenu) {
+      if (result === undefined) {
+        subMenu.classList.add("menu_active");
+      } else {
+        if (result !== subMenu) {
+          subMenu.classList.add("menu_active");
+        }
+        result.classList.remove("menu_active");
+      }
+      return false;
+    }
+  };
+}
