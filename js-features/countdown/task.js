@@ -1,12 +1,21 @@
-const count = function () {
-  const output = document.getElementById ("timer");
-  output.textContent -= 1;
-  if (output.textContent <= 0) {
-    alert('Вы победили в конкурсе!');
-    return clearInterval (inervalID);
+
+/*let count = function(){
+  const output = document.getElementById("timer");
+  if (output.textContent <= 0){
+    alert ("Вы победили в конкурсе!");
+    return clearInterval(intervalId);
+  } else {
+    (output.textContent--);
   }
-}
+};
+const intervalId = setInterval(count, 20);
+*/
 
-const inervalID = setInterval(count, 1000);
-
-
+let count = function(){
+  const output = document.getElementById("timer");
+  if (--output.textContent === 0){
+    alert ("Вы победили в конкурсе!");
+    return clearInterval(intervalId);
+  } 
+};
+const intervalId = setInterval(count, 20);
