@@ -21,6 +21,12 @@ chat.addEventListener('click', () => {
     chat.classList.add('chat-widget_active');
 })
 
+input.addEventListener('input', () => {
+    if(input.value.charAt(0) === ' ') {
+        input.value = '';
+      }
+})
+
 input.addEventListener('keydown', (e) => {
     if(input.value.length > 0 && e.keyCode === 13 ){
         let num = (Math.floor (Math.random() * 5));
